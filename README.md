@@ -14,5 +14,12 @@ Way this works is to add custom fields of app id and statsboard id to metadata o
 In order to use this dashboard, you will have to generate a "statsboardId" (any random id) and feed it into the publish flow along with individual registered app Ids. 
 
 
+## Installation and Usage
 
+1. Create a `.env` file using `.env.example` fill in details
 
+1. install deps
+`npm i`
+
+1. start app
+`npm start`

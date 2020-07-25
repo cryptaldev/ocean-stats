@@ -33,6 +33,27 @@ export default class DoughnutChart extends Component {
     }
   }
 
+  componentWillReceiveProps(props) {
+    console.log(props)
+    this.setState({
+      Doughnut: {
+        labels: props.data.labels,
+        datasets: [{
+          data: props.data.series,
+          backgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56'
+          ],
+          hoverBackgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56'
+          ]
+        }]
+      }
+    })
+  }
   render() {
     return (
       <>

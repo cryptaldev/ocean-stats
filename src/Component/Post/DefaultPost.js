@@ -19,7 +19,7 @@ export default class DefaultPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            postData: data,
+            data: [],
             show: false,
             jumbotronShow: false
         }
@@ -44,6 +44,12 @@ export default class DefaultPost extends Component {
         }
     }
 
+    componentWillReceiveProps(props) {
+        this.setState({
+            data: props.data
+        })
+    }
+
     render() {
         return (
             <>
@@ -55,6 +61,7 @@ export default class DefaultPost extends Component {
                     <Table className={style.table} responsive>
                         <thead className={style.thead}>
                             <tr>
+                                <th>Rank</th>
                                 <th>App Name</th>
                                 <th>Users </th>
                                 <th>Total Txs</th>
@@ -66,19 +73,15 @@ export default class DefaultPost extends Component {
 
                             {/* data is json file */}
 
-                            {this.state.postData.map(
+                            {this.state.data.map(
                                 (data, i) => {
                                     return (
-                                        <tr key={data.userId}>
-                                            <td>{data.write}</td>
-                                            <td>{data.date}</td>
-                                            <td>{data.time}</td>
-                                            <td className={style.tdIcon}>
-                                                <div>
-                                                    <Info info={data.item} Id={i} modelShow={this.shareShowHandler} checkClick={this.onDelecthander} />
-                                                </div>
-
-                                            </td>
+                                        <tr key={data.id}>
+                                            <td>{i + 1}</td>
+                                            <td>{data.name}</td>
+                                            <td>{data.txs}</td>
+                                            <td>{data.txs}</td>
+                                            <td><a href={data.homepage} target="_blank">{data.homepage}</a></td>
                                         </tr>
                                     )
                                 }

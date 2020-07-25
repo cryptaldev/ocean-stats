@@ -9,23 +9,54 @@ export default class BarChart extends Component {
 
   constructor(props) {
     super(props);
+    console.log(props)
     this.state = {
       barData: {
-        labels: [0, 10, 20, 30, 40, 50],
+        labels: [
+          "3:00AM",
+          "6:00AM",
+          "9:00AM",
+          "12:00AM",
+          "3:00PM",
+          "6:00PM",
+          "9:00PM",
+          "12:00PM"
+        ],
         datasets: [
           {
-            label: 'Tx counts',
+            label: 'Transaction History (24 hours)',
             backgroundColor: 'rgba(255,99,132,0.2)',
             borderColor: 'rgba(255,99,132,1)',
             borderWidth: 1,
             hoverBackgroundColor: 'rgba(255,99,132,0.4)',
             hoverBorderColor: 'rgba(255,99,132,1)',
-            data: [40, 35, 28, 19, 20, 46]
+            data: [30, 50, 40, 60, 10, 30, 10, 20]
           }
         ]
       }
     }
   }
+
+  componentWillReceiveProps(props) {
+    console.log(props)
+    this.setState({
+      barData: {
+        labels: props.data.labels,
+        datasets: [
+          {
+            label: 'Transaction History (24 hours)',
+            backgroundColor: 'rgba(255,99,132,0.2)',
+            borderColor: 'rgba(255,99,132,1)',
+            borderWidth: 1,
+            hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+            hoverBorderColor: 'rgba(255,99,132,1)',
+            data: props.data.series[0]
+          }
+        ]
+      }
+    })
+  }
+
 
   render() {
     return (
